@@ -1,5 +1,6 @@
 /**
- * Skotch - A simple 3D graphics library for Bun/TypeScript using WebGL
+ * Skotch - 3D Graphics Library
+ *
  * Copyright (C) 2025 - Navid M.
  */
 
