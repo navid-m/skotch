@@ -1,0 +1,15 @@
+{
+  "name": "skotch",
+  "module": "main.ts",
+  "type": "module",
+  "scripts": {
+    "prod": "bun build main.ts --outfile dist/skotch.min.js --minify",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

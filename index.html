@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skotch Demo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a9eff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .demo-section {
+            margin: 30px 0;
+            background: #16213e;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            color: #4a9eff;
+            margin-top: 0;
+        }
+
+        canvas {
+            display: block;
+            margin: 20px auto;
+            background: #0f1419;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(74, 158, 255, 0.2);
+        }
+
+        .controls {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        button {
+            background: #4a9eff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #357abd;
+        }
+
+        code {
+            background: #0f1419;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #4a9eff;
+        }
+
+        pre {
+            background: #0f1419;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #4a9eff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Skotch Library Demo</h1>
+
+        <div class="demo-section">
+            <h2>1. Rotating Cube</h2>
+            <p>A simple spinning cube with automatic rotation animation.</p>
+            <canvas id="canvas1" width="800" height="600"></canvas>
+            <div class="controls">
+                <button id="btn1">Toggle Animation</button>
+            </div>
+            <pre><code>const scene = Easy3D.createScene('canvas1');
+const cube = Easy3D.createCube(1.5, [1, 0.5, 0.2, 1]);
+scene.add(cube);
+
+scene.onAnimate(() => {
+  cube.transform.rotation.y += 0.01;
+  cube.transform.rotation.x += 0.005;
+});
+
+scene.startAnimation();</code></pre>
+        </div>
+
+        <div class="demo-section">
+            <h2>2. Multiple Objects</h2>
+            <p>Multiple geometric primitives with different animations.</p>
+            <canvas id="canvas2" width="800" height="600"></canvas>
+            <div class="controls">
+                <button id="btn2">Toggle Animation</button>
+            </div>
+            <pre><code>const scene = Easy3D.createScene('canvas2');
+
+const sphere = Easy3D.createSphere(0.8, 32, [0.2, 0.5, 1, 1]);
+sphere.transform.position.x = -2;
+
+const pyramid = Easy3D.createPyramid(1.2, [1, 0.8, 0.2, 1]);
+pyramid.transform.position.x = 2;
+
+const torus = Easy3D.createTorus(0.8, 0.3, 32, [0.8, 0.2, 0.8, 1]);
+
+scene.add(sphere);
+scene.add(pyramid);
+scene.add(torus);
+
+let time = 0;
+scene.onAnimate((dt) => {
+  time += dt;
+  sphere.transform.rotation.y += dt;
+  pyramid.transform.rotation.y -= dt * 0.5;
+  torus.transform.rotation.x += dt * 0.8;
+});</code></pre>
+        </div>
+
+        <div class="demo-section">
+            <h2>3. Orbital Camera</h2>
+            <p>Camera orbiting around a central object.</p>
+            <canvas id="canvas3" width="800" height="600"></canvas>
+            <div class="controls">
+                <button id="btn3">Toggle Animation</button>
+            </div>
+            <pre><code>const scene = Easy3D.createScene('canvas3');
+const cube = Easy3D.createCube(1.5, [0.3, 0.9, 0.6, 1]);
+scene.add(cube);
+
+let angle = 0;
+scene.onAnimate((dt) => {
+  angle += dt * 0.5;
+  const camera = scene.getCamera();
+  camera.position.x = Math.cos(angle) * 5;
+  camera.position.z = Math.sin(angle) * 5;
+  camera.position.y = 2 + Math.sin(angle * 2);
+});</code></pre>
+        </div>
+
+        <div class="demo-section">
+            <h2>4. Complex Animation</h2>
+            <p>Solar system-like animation with multiple objects.</p>
+            <canvas id="canvas4" width="800" height="600"></canvas>
+            <div class="controls">
+                <button id="btn4">Toggle Animation</button>
+            </div>
+            <pre><code>const scene = Easy3D.createScene('canvas4');
+
+const sun = Skotch.createSphere(1, 32, [1, 0.8, 0.2, 1]);
+const planet = Skotch.createSphere(0.4, 24, [0.2, 0.6, 1, 1]);
+const moon = Skotch.createSphere(0.2, 16, [0.7, 0.7, 0.7, 1]);
+
+scene.add(sun);
+scene.add(planet);
+scene.add(moon);
+
+let time = 0;
+scene.onAnimate((dt) => {
+  time += dt;
+  sun.transform.rotation.y += dt * 0.2;
+  
+  planet.transform.position.x = Math.cos(time) * 3;
+  planet.transform.position.z = Math.sin(time) * 3;
+  
+  moon.transform.position.x = planet.transform.position.x + Math.cos(time * 3) * 0.8;
+  moon.transform.position.z = planet.transform.position.z + Math.sin(time * 3) * 0.8;
+});</code></pre>
+        </div>
+    </div>
+
+    <script type="module">
+        import Skotch from './skotch.js';
+
+        const scene1 = Skotch.createScene('canvas1');
+        const cube1 = Skotch.createCube(1.5, [1, 0.5, 0.2, 1]);
+        scene1.add(cube1);
+
+        scene1.onAnimate(() => {
+            cube1.transform.rotation.y += 0.01;
+            cube1.transform.rotation.x += 0.005;
+        });
+
+        scene1.startAnimation();
+
+        document.getElementById('btn1').addEventListener('click', () => {
+            if (scene1.isAnimating) {
+                scene1.stopAnimation();
+            } else {
+                scene1.startAnimation();
+            }
+        });
+
+        const scene2 = Skotch.createScene('canvas2');
+        const sphere = Skotch.createSphere(0.8, 32, [0.2, 0.5, 1, 1]);
+        sphere.transform.position.x = -2;
+
+        const pyramid = Skotch.createPyramid(1.2, [1, 0.8, 0.2, 1]);
+        pyramid.transform.position.x = 2;
+
+        const torus = Skotch.createTorus(0.8, 0.3, 32, [0.8, 0.2, 0.8, 1]);
+
+        scene2.add(sphere);
+        scene2.add(pyramid);
+        scene2.add(torus);
+
+        let time2 = 0;
+        scene2.onAnimate((dt) => {
+            time2 += dt;
+            sphere.transform.rotation.y += dt;
+            sphere.transform.position.y = Math.sin(time2 * 2) * 0.3;
+
+            pyramid.transform.rotation.y -= dt * 0.5;
+            pyramid.transform.position.y = Math.cos(time2 * 1.5) * 0.3;
+
+            torus.transform.rotation.x += dt * 0.8;
+            torus.transform.rotation.y += dt * 0.4;
+        });
+
+        scene2.startAnimation();
+
+        document.getElementById('btn2').addEventListener('click', () => {
+            if (scene2.isAnimating) {
+                scene2.stopAnimation();
+            } else {
+                scene2.startAnimation();
+            }
+        });
+
+        const scene3 = Skotch.createScene('canvas3');
+        const cube3 = Skotch.createCube(1.5, [0.3, 0.9, 0.6, 1]);
+        scene3.add(cube3);
+
+        let angle3 = 0;
+        scene3.onAnimate((dt) => {
+            angle3 += dt * 0.5;
+            const camera = scene3.getCamera();
+            camera.position.x = Math.cos(angle3) * 5;
+            camera.position.z = Math.sin(angle3) * 5;
+            camera.position.y = 2 + Math.sin(angle3 * 2);
+
+            cube3.transform.rotation.y += dt * 0.3;
+        });
+
+        scene3.startAnimation();
+
+        document.getElementById('btn3').addEventListener('click', () => {
+            if (scene3.isAnimating) {
+                scene3.stopAnimation();
+            } else {
+                scene3.startAnimation();
+            }
+        });
+
+        const scene4 = Skotch.createScene('canvas4');
+        const sun = Skotch.createSphere(1, 32, [1, 0.8, 0.2, 1]);
+        const planet = Skotch.createSphere(0.4, 24, [0.2, 0.6, 1, 1]);
+        const moon = Skotch.createSphere(0.2, 16, [0.7, 0.7, 0.7, 1]);
+
+        scene4.add(sun);
+        scene4.add(planet);
+        scene4.add(moon);
+
+        const camera4 = scene4.getCamera();
+        camera4.position.y = 4;
+        camera4.position.z = 8;
+
+        let time4 = 0;
+
+        scene4.onAnimate((dt) => {
+            time4 += dt;
+
+            sun.transform.rotation.y += dt * 0.2;
+
+            planet.transform.position.x = Math.cos(time4) * 3;
+            planet.transform.position.z = Math.sin(time4) * 3;
+            planet.transform.rotation.y += dt;
+
+            moon.transform.position.x = planet.transform.position.x + Math.cos(time4 * 3) * 0.8;
+            moon.transform.position.z = planet.transform.position.z + Math.sin(time4 * 3) * 0.8;
+            moon.transform.position.y = Math.sin(time4 * 3) * 0.3;
+        });
+
+        scene4.startAnimation();
+
+        document.getElementById('btn4').addEventListener('click', () => {
+            if (scene4.isAnimating) {
+                scene4.stopAnimation();
+            } else {
+                scene4.startAnimation();
+            }
+        });
+    </script>
+</body>
+
+</html>
