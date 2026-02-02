@@ -3,9 +3,10 @@ node_modules
 
 # output
 out
-dist
+
 *.tgz
 *.js
+!dist/*.js
 # code coverage
 coverage
 *.lcov
