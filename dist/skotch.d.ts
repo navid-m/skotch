@@ -54,6 +54,7 @@ export declare class Transform {
 export declare class Mesh {
     geometry: Geometry;
     transform: Transform;
+    userData: any;
     private buffers?;
     constructor(geometry: Geometry);
     initBuffers(gl: WebGLRenderingContext): void;

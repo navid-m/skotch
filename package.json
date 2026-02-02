@@ -12,7 +12,8 @@
     "bun"
   ],
   "scripts": {
-    "prod": "bun build src/main.ts --outfile dist/skotch.js --minify && bunx tsc src/main.ts --emitDeclarationOnly --declaration --outdir dist && bun run build/post.ts",
+    "build:physics": "bun build src/physics.ts --outfile dist/physics.js --minify && bunx tsc src/physics.ts --emitDeclarationOnly --declaration --outdir dist",
+    "prod": "bun build src/main.ts --outfile dist/skotch.js --minify && bun run build:physics && bunx tsc src/main.ts --emitDeclarationOnly --declaration --outdir dist && bun run build/post.ts",
     "test": "bun test"
   },
   "devDependencies": {

@@ -568,6 +568,7 @@ export class Transform {
 export class Mesh {
     geometry: Geometry;
     transform: Transform = new Transform();
+    userData: any = {};
     private buffers?: {
         vertex: WebGLBuffer;
         index: WebGLBuffer;

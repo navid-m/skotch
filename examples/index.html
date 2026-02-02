@@ -188,8 +188,32 @@ scene.onAnimate((dt) => {
         </div>
     </div>
 
+    <div class="demo-section">
+        <h2>5. Physics Collisions</h2>
+        <p>Simple sphere-sphere collisions using the built physics helper.</p>
+        <canvas id="canvas5" width="800" height="600"></canvas>
+        <div class="controls">
+            <button id="btn5">Toggle Animation</button>
+        </div>
+        <pre><code>import { attachPhysics, SimplePhysicsBody, SphereCollider, stepPhysics } from '../dist/physics.js';
+
+const scene = Skotch.createScene('canvas5');
+const a = Skotch.createSphere(0.6, 24, [0.9,0.2,0.2,1]);
+const b = Skotch.createSphere(0.6, 24, [0.2,0.6,1,1]);
+scene.add(a); scene.add(b);
+attachPhysics(a, new SimplePhysicsBody(1), new SphereCollider(0.6));
+attachPhysics(b, new SimplePhysicsBody(1), new SphereCollider(0.6));
+a.userData.physics.body.velocity.x = 1.5;
+b.userData.physics.body.velocity.x = -1.0;
+
+scene.onAnimate((dt) => stepPhysics([a,b], dt));
+scene.startAnimation();</code></pre>
+
+    </div>
+
     <script type="module">
         import Skotch from '../dist/skotch.js';
+        import { attachPhysics, SimplePhysicsBody, SphereCollider, stepPhysics } from '../dist/physics.js';
 
         const scene1 = Skotch.createScene('canvas1');
         const cube1 = Skotch.createCube(1.5, [1, 0.5, 0.2, 1]);
@@ -307,6 +331,37 @@ scene.onAnimate((dt) => {
                 scene4.stopAnimation();
             } else {
                 scene4.startAnimation();
+            }
+        });
+
+        const scene5 = Skotch.createScene('canvas5');
+        const a = Skotch.createSphere(0.6, 24, [0.9, 0.2, 0.2, 1]);
+        const b = Skotch.createSphere(0.6, 24, [0.2, 0.6, 1, 1]);
+        a.transform.position.x = -1;
+        a.transform.position.y = 1;
+        b.transform.position.x = 1;
+        b.transform.position.y = 1;
+
+        scene5.add(a);
+        scene5.add(b);
+
+        attachPhysics(a, new SimplePhysicsBody(1), new SphereCollider(0.6));
+        attachPhysics(b, new SimplePhysicsBody(1), new SphereCollider(0.6));
+
+        a.userData.physics.body.velocity.x = 1.5;
+        b.userData.physics.body.velocity.x = -1.0;
+
+        scene5.onAnimate((dt) => {
+            stepPhysics([a, b], dt);
+        });
+
+        scene5.startAnimation();
+
+        document.getElementById('btn5').addEventListener('click', () => {
+            if (scene5.isAnimating) {
+                scene5.stopAnimation();
+            } else {
+                scene5.startAnimation();
             }
         });
     </script>
