@@ -69,6 +69,7 @@ export function attachPhysics(
 
 /**
  * Step simple physics for meshes that have `.userData.physics` attached.
+ *
  * - Integrates bodies
  * - Performs simple sphere-sphere collision detection & position/velocity resolution
  */
