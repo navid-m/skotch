@@ -3,9 +3,9 @@
   "module": "main.ts",
   "type": "module",
   "description": "A 3D graphics library for the web, simple and fast.",
-  "version": "v0.0.2",
+  "version": "v0.0.3",
   "scripts": {
-    "prod": "bun build main.ts --outfile dist/skotch.min.js --minify",
+    "prod": "bun build main.ts --outfile dist/skotch.js --minify && bunx tsc main.ts --emitDeclarationOnly --declaration --outdir dist && bun run post.ts",
     "test": "bun test"
   },
   "devDependencies": {
@@ -13,5 +13,8 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "exports": {
+    ".": "./dist/skotch.js"
   }
 }
