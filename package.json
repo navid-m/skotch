@@ -2,8 +2,8 @@
   "name": "skotch",
   "module": "main.ts",
   "type": "module",
-  "description": "A 3D graphics library for the web, simple fast and efficient",
-  "version": "v0.0.1",
+  "description": "A 3D graphics library for the web, simple and fast.",
+  "version": "v0.0.2",
   "scripts": {
     "prod": "bun build main.ts --outfile dist/skotch.min.js --minify",
     "test": "bun test"
