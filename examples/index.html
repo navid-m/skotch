@@ -94,8 +94,8 @@
             <div class="controls">
                 <button id="btn1">Toggle Animation</button>
             </div>
-            <pre><code>const scene = Easy3D.createScene('canvas1');
-const cube = Easy3D.createCube(1.5, [1, 0.5, 0.2, 1]);
+            <pre><code>const scene = Skotch.createScene('canvas1');
+const cube = Skotch.createCube(1.5, [1, 0.5, 0.2, 1]);
 scene.add(cube);
 
 scene.onAnimate(() => {
@@ -113,15 +113,15 @@ scene.startAnimation();</code></pre>
             <div class="controls">
                 <button id="btn2">Toggle Animation</button>
             </div>
-            <pre><code>const scene = Easy3D.createScene('canvas2');
+            <pre><code>const scene = Skotch.createScene('canvas2');
 
-const sphere = Easy3D.createSphere(0.8, 32, [0.2, 0.5, 1, 1]);
+const sphere = Skotch.createSphere(0.8, 32, [0.2, 0.5, 1, 1]);
 sphere.transform.position.x = -2;
 
-const pyramid = Easy3D.createPyramid(1.2, [1, 0.8, 0.2, 1]);
+const pyramid = Skotch.createPyramid(1.2, [1, 0.8, 0.2, 1]);
 pyramid.transform.position.x = 2;
 
-const torus = Easy3D.createTorus(0.8, 0.3, 32, [0.8, 0.2, 0.8, 1]);
+const torus = Skotch.createTorus(0.8, 0.3, 32, [0.8, 0.2, 0.8, 1]);
 
 scene.add(sphere);
 scene.add(pyramid);
@@ -143,8 +143,8 @@ scene.onAnimate((dt) => {
             <div class="controls">
                 <button id="btn3">Toggle Animation</button>
             </div>
-            <pre><code>const scene = Easy3D.createScene('canvas3');
-const cube = Easy3D.createCube(1.5, [0.3, 0.9, 0.6, 1]);
+            <pre><code>const scene = Skotch.createScene('canvas3');
+const cube = Skotch.createCube(1.5, [0.3, 0.9, 0.6, 1]);
 scene.add(cube);
 
 let angle = 0;
@@ -164,7 +164,7 @@ scene.onAnimate((dt) => {
             <div class="controls">
                 <button id="btn4">Toggle Animation</button>
             </div>
-            <pre><code>const scene = Easy3D.createScene('canvas4');
+            <pre><code>const scene = Skotch.createScene('canvas4');
 
 const sun = Skotch.createSphere(1, 32, [1, 0.8, 0.2, 1]);
 const planet = Skotch.createSphere(0.4, 24, [0.2, 0.6, 1, 1]);
@@ -189,7 +189,7 @@ scene.onAnimate((dt) => {
     </div>
 
     <script type="module">
-        import Skotch from './skotch.js';
+        import Skotch from '../dist/skotch.js';
 
         const scene1 = Skotch.createScene('canvas1');
         const cube1 = Skotch.createCube(1.5, [1, 0.5, 0.2, 1]);
