@@ -1,0 +1,35 @@
+Missing / Incomplete Features (outline)
+
+Scene Graph: parent/child transforms, hierarchical world matrices, traversal for updates.
+Transform Math: matrix inverse, transpose, full matrix utilities, and quaternion support for rotation.
+Materials & Shaders: material abstraction, shader management, multiple shader programs, hot-reload/compile helpers.
+Texture Support: UVs in geometry, texture coordinates, image loading, samplers, and mipmapping.
+Advanced Shading: PBR/material parameters, normals/tangents/bitangents, normal/specular/roughness/metalness maps.
+Lighting System: support for multiple light types (directional, point, spot), intensity/color control, and basic shadow mapping.
+Post-processing: framebuffers, post-effects pipeline (HDR, bloom, tonemapping, FXAA).
+Asset Loading: async loaders for glTF / OBJ / common formats, material & texture binding, asset cache.
+Animation Systems: skeletal (skin) animation, morph targets, animation clips & mixer, keyframe interpolation.
+GPU Resource Management: explicit creation/disposal APIs for buffers, textures, programs; handling context loss.
+WebGL2 / WebGPU Support: upgrade path or abstraction layer to use WebGL2 features (VAOs, float textures) or WebGPU.
+Indexing / Large Meshes: support for 32-bit indices, large-buffer handling, interleaved attributes and strides.
+Instancing & Batching: hardware instanced rendering and draw-call batching for performance.
+Culling & LOD: frustum culling, bounding volumes (AABB / sphere), level-of-detail switching.
+Controls & Input: built-in camera controllers (orbit, arcball, FPS), pointer/touch helpers, event handling utilities.
+Collision / Physics Integration: simple collision detection helpers or hooks for physics engines.
+Utilities: color helpers, curve/spline utilities, math constants, helpers for transforms.
+Testing & CI: unit tests for math, geometry, renderer; automated build/tests.
+Documentation & Examples: expanded README, API docs, typed examples (texture, model loading, postprocessing, lighting).
+Packaging & Types: package module entry should point to distributed JS; ensure .d.ts exports cover public API.
+Performance & Stability: resizing handling (canvas/camera aspect), frame timing, memory leak checks, resource cleanup.
+Error Handling / Logging: better shader compile/link errors, validation, helpful runtime messages.
+Feature Flags / Extensions: plugin system for optional modules (phys, loaders, postprocess).
+Quick prioritization (recommended next steps)
+
+Math completion: add Mat4 inverse/transpose, quaternions — required by many features.
+Texture + material basics: UVs, image loader, sampler, simple textured shader.
+Shader/material API: allow custom shaders and multiple materials.
+Asset loading: glTF loader (brings models, materials, animations).
+Controls & resize handling: orbit/FPS controllers and responsive canvas.
+WebGL2 upgrade: enable VAOs, 32-bit indices, instancing.
+Lighting & shadows, then post-processing and instancing.
+Add tests, examples, and documentation.
