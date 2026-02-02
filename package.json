@@ -2,6 +2,7 @@
   "name": "skotch",
   "module": "main.ts",
   "type": "module",
+  "version": "v0.0.1",
   "scripts": {
     "prod": "bun build main.ts --outfile dist/skotch.min.js --minify",
     "test": "bun test"
