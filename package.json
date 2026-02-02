@@ -3,7 +3,14 @@
   "module": "main.ts",
   "type": "module",
   "description": "A 3D graphics library for the web, simple and fast.",
-  "version": "v0.0.3",
+  "version": "v0.0.4",
+  "keywords": [
+    "3d",
+    "graphics",
+    "webgl",
+    "typescript",
+    "bun"
+  ],
   "scripts": {
     "prod": "bun build main.ts --outfile dist/skotch.js --minify && bunx tsc main.ts --emitDeclarationOnly --declaration --outdir dist && bun run post.ts",
     "test": "bun test"
