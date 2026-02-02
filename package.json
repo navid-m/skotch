@@ -12,7 +12,7 @@
     "bun"
   ],
   "scripts": {
-    "prod": "bun build src/main.ts --outfile dist/skotch.js --minify && bunx tsc src/main.ts --emitDeclarationOnly --declaration --outdir dist && bun run post.ts",
+    "prod": "bun build src/main.ts --outfile dist/skotch.js --minify && bunx tsc src/main.ts --emitDeclarationOnly --declaration --outdir dist && bun run build/post.ts",
     "test": "bun test"
   },
   "devDependencies": {
